@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Investor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+         margin: 0; 
+         padding: 0; 
+         box-sizing: border-box; 
+         }
+        body { 
+        font-family: 'Roboto', sans-serif; 
+        background: #f0f4f8; 
+        color: #333; 
+        line-height: 1.6; 
+        }
+         header {
+         	font-family: 'Roboto', sans-serif;
+            background-color: #1F3A64;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .container 
+        { 
+        width: 90%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 20px 0; 
+        }
+        section 
+        { 
+        margin: 40px 0; 
+        }
+        section h2 
+        { font-size: 2.5em; 
+        font-weight: 700;
+        text-align: center; 
+        margin-bottom: 20px; 
+        color: #2e3b4e; 
+        }
+        .investment-performance, .actions, .growth-analysis
+        { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 20px; 
+        }
+        .investment-performance .investment, .actions .action, .growth-analysis .growth
+        { 
+        background: #fff; 
+        padding: 30px; 
+        border-radius: 10px; 
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+        text-align: center; 
+        flex: 1 1 calc(45% - 20px); 
+        transition: all 0.3s ease; 
+        }
+        .investment-performance .investment:hover, .actions .action:hover, .growth-analysis .growth:hover 
+        { 
+        transform: translateY(-10px); 
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+         }
+        .investment-performance h3, .actions h3, .growth-analysis h3 
+        { 
+        color: #1f3a64; 
+        font-size: 1.8em; 
+        }
+        .investment-performance .value, .growth-analysis .value 
+        { 
+        font-size: 2.5em; 
+        font-weight: 700; 
+        margin: 10px 0; 
+        }
+        .investment-performance .value.negative, .growth-analysis .value.negative 
+        { 
+        color: #e74c3c; 
+        }
+        .actions .action button 
+        {
+            background: #1f3a64; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            font-size: 1em; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .actions .action button:hover {
+            background: #4caf50;
+        }
+
+        		        /* Navigation Bar */
+        .nav-container {
+            background-color: #2980B9;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #1F618D;
+            border-radius: 5px;
+        }
+
+        .logout-button a {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            background-color: #E74C3C;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button a:hover {
+            background-color: #C0392B;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Individual Investor Dashboard</h1>
+    <p>Track your investments and market trends</p>
+</header>
+
+    <!-- Navigation Links with Logout option -->
+    <div class="nav-container">
+        <div class="nav-links">
+            <a href="success.html"><b>Home</b></a>
+            <a href="about.html"><b>About Us</b></a>
+            <a href="market.jsp"><b>Market</b></a>
+            <a href="fund.html"><b>Mutual Funds</b></a>
+            <a href="update.html"><b>Growth</b></a>
+            <a href="contact.html"><b>Contact Us</b></a>
+        </div>
+        <!-- Logout button aligned to the right -->
+        <div class="logout-button">
+            <a href="logout.html"><b>Logout</b></a>
+        </div>
+    </div>
+
+<div class="container">
+
+    <!-- Actions Section -->
+    <section class="actions">
+        <div class="action">
+            <h3>Invest in Stock</h3>
+            <button onclick="location.href='invest.jsp'">Invest Now</button>
+        </div>
+        <div class="action">
+            <h3>Buy Stock</h3>
+            <button onclick="location.href='new_buy_stocks.jsp'">Buy Now</button>
+        </div>
+        <div class="action">
+            <h3>Transaction Details</h3>
+            <button onclick="location.href='transaction_details.jsp'">Details</button>
+        </div>
+    </section>
+
+</div>
+
+
+</body>
+</html>  

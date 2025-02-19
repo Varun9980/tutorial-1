@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Funds | Stock Market</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery Library -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #1F3A64;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Navigation Bar */
+        .nav-container {
+            background-color: #2980B9;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #1F618D;
+            border-radius: 5px;
+        }
+
+        .logout-button a {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            background-color: #E74C3C;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button a:hover {
+            background-color: #C0392B;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Fund Cards */
+        .funds-section {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .fund-card {
+            background-color: white;
+            width: 30%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .fund-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .fund-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .fund-card h3 {
+            font-size: 1.8rem;
+            margin-top: 15px;
+            color: #003b73;
+        }
+
+        .fund-card p {
+            color: #777;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        /* SIP Calculator */
+        .sip-calculator-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .sip-calculator-container h2 {
+            font-size: 2.2rem;
+            color: #003b73;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sip-calculator-container label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #333;
+        }
+
+        .sip-calculator-container input,
+        .sip-calculator-container select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .sip-calculator-container input:focus,
+        .sip-calculator-container select:focus {
+            border-color: #2980B9;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .sip-calculator-container button {
+            background-color: #2980B9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .sip-calculator-container button:hover {
+            background-color: #1F618D;
+        }
+
+        /* SIP Results */
+        #sipResults {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .funds-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .fund-card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .sip-calculator-container {
+                padding: 30px;
+            }
+
+            .sip-calculator-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .sip-calculator-container input,
+            .sip-calculator-container select {
+                font-size: 1rem;
+            }
+
+            .sip-calculator-container button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mutual Funds</h1>
+        <p>Explore top-performing mutual funds and start your investment journey</p>
+    </header>
+    
+    <div class="nav-container">
+        <div class="nav-links">
+            <a href="success.html"><b>Home</b></a>
+            <a href="about.html"><b>About Us</b></a>
+            <a href="market.jsp"><b>Market</b></a>
+            <a href="fund.html"><b>Mutual Funds</b></a>
+            <a href="update.html"><b>Growth</b></a>
+            <a href="contact.html"><b>Contact Us</b></a>
+        </div>
+        <div class="logout-button">
+            <a href="logout.html"><b>Logout</b></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="funds-section">
+            <div class="fund-card" data-title="Equity Fund" data-description="Invest in high-growth stocks for long-term wealth creation. Suitable for investors looking for high returns over a longer duration." data-rate="12">
+                <img src="equity.jpg" alt="Equity Fund">
+                <h3>Equity Fund</h3>
+                <p>Invest in high-growth stocks for long-term wealth creation.</p>
+            </div>
+            <div class="fund-card" data-title="Debt Fund" data-description="Low-risk investments with steady returns. Ideal for conservative investors looking for capital preservation." data-rate="7">
+                <img src="debt.jpg" alt="Debt Fund">
+                <h3>Debt Fund</h3>
+                <p>Low-risk investments with steady returns for financial stability.</p>
+            </div>
+            <div class="fund-card" data-title="Balanced Fund" data-description="A mix of equity and debt for a balanced portfolio. Suitable for investors seeking moderate risk and returns." data-rate="9">
+                <img src="balance.jpg" alt="Balanced Fund">
+                <h3>Balanced Fund</h3>
+                <p>A mix of equity and debt for a balanced portfolio.</p>
+            </div>
+        </div>
+
+        <div class="sip-calculator-container">
+            <h2>SIP Calculator</h2>
+            <form id="sipForm">
+                <label for="amount">Investment Amount (₹):</label>
+                <input type="number" id="amount" placeholder="Enter monthly investment" required>
+                
+                <label for="months">Number of Months:</label>
+                <input type="number" id="months" placeholder="Enter duration in months" required>
+                
+                <label for="rate">Expected Annual Return Rate (%):</label>
+                <select id="rate" required>
+                    <option value="12">Equity Fund - 12%</option>
+                    <option value="7">Debt Fund - 7%</option>
+                    <option value="9">Balanced Fund - 9%</option>
+                </select>
+                
+                <button type="submit">Calculate Returns</button>
+            </form>
+            <div id="sipResults"></div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#sipForm').submit(function(e) {
+                e.preventDefault();
+
+                // Get inputs
+                const amount = parseFloat($('#amount').val());
+                const months = parseInt($('#months').val());
+                const rate = parseFloat($('#rate').val());
+
+                // Validate inputs
+                if (amount <= 0 || months <= 0) {
+                    $('#sipResults').html('<p style="color: red;">Please enter valid positive values.</p>');
+                    return;
+                }
+
+                // Calculate SIP returns
+                const futureValue = calculateFutureValue(amount, months, rate);
+
+                // Display results
+                $('#sipResults').html(`<p>Estimated Future Value: ₹${futureValue.toFixed(2)}</p>`);
+            });
+
+            function calculateFutureValue(amount, months, rate) {
+                const monthlyRate = rate / 100 / 12; // Convert annual rate to monthly decimal
+                return amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+            }
+        });
+    </script>
+</body>
+</html>
